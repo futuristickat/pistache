@@ -416,6 +416,24 @@ private:
 
 };
 
+class ContentDisposition : public Header {
+public:
+    NAME("Content-Disposition");
+
+    ContentDisposition() {  }
+
+    ContentDisposition(const std::string &filename)
+        : filename_(filename)
+    {  }
+
+    void parseRaw(const char* str, size_t len) override;
+    void write(std::ostream& os) const override;
+
+private:
+    std::string filename_;
+
+};
+
 class Date : public Header {
 public:
     NAME("Date")

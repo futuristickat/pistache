@@ -536,6 +536,20 @@ ContentType::write(std::ostream& os) const {
     os << mime_.toString();
 }
 
+void
+ContentDisposition::parseRaw(const char* /* str */, size_t /* len */) {
+
+}
+
+void
+ContentDisposition::write(std::ostream& os) const {
+   os << "attachment";
+
+   if (!filename_.empty()) {
+       os << "; filename=" << filename_;
+   }
+}
+
 } // namespace Header
 } // namespace Http
 } // namespace Pistache
